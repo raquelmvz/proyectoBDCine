@@ -26,17 +26,36 @@ public class Proyeccione implements Serializable {
 	@Column(name="idioma_proyeccion")
 	private String idiomaProyeccion;
 
+		
 	//bi-directional many-to-one association to Pelicula
+	/* Relacion bidireccional muchos a uno entre Proyecciones y Peliculas 
+	 * Se hacen muchas proyecciones de una misma pelicula
+	 * Este atributo representa la pelicula involucrada en esta proyeccion
+	 * La tabla Proyecciones es la propietaria de la relacion al tener la clave ajena
+	 * Esto se indica con @JoinColumn y el atributo de la tabla con el que obtener
+	 * los datos de la tabla Peliculas */
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idpelicula")
 	private Pelicula pelicula;
 
 	//bi-directional many-to-one association to Sala
+	/* Relacion bidireccional muchos a uno entre Proyecciones y Salas
+	 * Se hacen muchas proyecciones en la misma sala
+	 * Este atributo representa la sala involucrada en esta proyeccion
+	 * La tabla Proyecciones es la propietaria de la relacion al tener la clave ajena
+	 * Esto se indica con @JoinColumn y el atributo de la tabla con el que obtener
+	 * los datos de la tabla Salas  */
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idsala")
 	private Sala sala;
+	
 
 	//bi-directional many-to-one association to Reserva
+	/* Relacion bidireccional uno a muchos entre Proyecciones y Reservas
+	 * Se hacen muchas reservas de la misma proyeccion 
+	 * Con esta anotacion y este atributo se pueden recuperar 
+	 * las reservas que se han hecho para esta proyeccion 
+	 * mappedBy indica el atributo asociado en la clase Reserva*/
 	@OneToMany(mappedBy="proyeccione")
 	private List<Reserva> reservas;
 

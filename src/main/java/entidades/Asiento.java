@@ -22,13 +22,24 @@ public class Asiento implements Serializable {
 	private int fila;
 
 	private int numero;
-
+	
 	//bi-directional many-to-one association to Sala
+	/* Relacion bidireccional entre Asientos y Salas
+	 * Una sala contiene muchos asientos
+	 * El atributo representa la sala a la que pertenece este asiento
+	 * La tabla Asiento es la propietaria de esta relación porque tiene la clave ajena
+	 * Esto se indica con el @JoinColumn y el atributo de la tabla con la que obtener los
+	 * datos de la tabla Sala */
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idsala")
 	private Sala sala;
-
+	
 	//bi-directional many-to-one association to Asientosreservado
+	/* Relacion bidireccional uno a muchos con Asientos Reservados
+	 * Un asiento puede ser reservado muchas veces
+	 * Con esta anotacion y este atributo se pueden recuperar 
+	 * las reservas que se han hecho para ese asiento
+	 * mappedBy indica el atributo asociado en la clase Asiento */
 	@OneToMany(mappedBy="asiento")
 	private List<Asientosreservado> asientosreservados;
 
