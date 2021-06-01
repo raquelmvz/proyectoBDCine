@@ -34,7 +34,21 @@ public class Pelicula implements Serializable {
 
 	private String titulo;
 
+	//bi-directional many-to-one association to Asientosreservado
+		/* Relacion bidireccional uno a muchos con Asientos Reservados
+		 * Un asiento puede ser reservado muchas veces
+		 * Con esta anotacion y este atributo se pueden recuperar 
+		 * las reservas que se han hecho para ese asiento
+		 * mappedBy indica el atributo asociado en la clase Asiento */
+//		@OneToMany(mappedBy="asiento")
+//		private List<Asientosreservado> asientosreservados;
+//		
+		
 	//bi-directional many-to-one association to Proyeccione
+	/* Relacion bidireccional uno a muchos entre Peliculas y Proyecciones
+	 * Una pelicula puede ser proyectada varias veces
+	 * Con esta anotacion y este atributo se pueden recuperar
+	 * las proyecciones que se han hecho para esta pelicula */
 	@OneToMany(mappedBy="pelicula")
 	private List<Proyeccione> proyecciones;
 
